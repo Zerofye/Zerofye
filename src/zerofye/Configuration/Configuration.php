@@ -18,37 +18,30 @@
  * License: https://github.com/Zerofye/Zerofye/blob/master/LICENSE
  */
 
-namespace zerofye;
+namespace zerofye\Configuration;
 
 
-use zerofye\Console\Console;
-use zerofye\Text\Text;
+use zerofye\Server;
 
-class Server {
+class Configuration {
 
-	private $console;
+	public $propeties = [];
+	public $server;
 
-	public function __construct(){
-		$this->loadComponents();
-		$this->start();
+	public function __construct(Server $server){
+		$this->server = $server;
 	}
 
-	public function loadComponents() : void {
-
-		$this->console = new Console($this);
+	public function getZerofyeProperties() : array {
+		return $this->propeties;
 	}
 
-	public function getConsole() : Console {
-		return $this->console;
-	}
+	public function checkProperties() : bool {
 
-	public function start() : void {
-
-		$this->getConsole()->getLogger()->log("Starting up. ..", Text::INFO, Text::COLOR_BLUE);
-
-		/*
-		 *  (TODO) The logics now, leveling, networking, etc.
-		 */
-
+		if(count($this->propeties) == 0){
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
