@@ -22,6 +22,7 @@ namespace zerofye;
 
 
 use zerofye\Console\Console;
+use zerofye\Text\Text;
 
 class Server {
 
@@ -29,10 +30,24 @@ class Server {
 
 	public function __construct(){
 		$this->loadComponents();
+		$this->start();
 	}
 
 	public function loadComponents() : void{
 
 		$this->console = new Console($this);
+	}
+
+	public function getConsole() : Console {
+		return $this->console;
+	}
+
+	public function start() : void {
+
+		$this->getConsole()->getLogger()->log("Starting up. ..", Text::INFO, Text::COLOR_BLUE);
+
+		/*
+		 *  (TODO) The logics now, leveling, networking, etc.
+		 */
 	}
 }

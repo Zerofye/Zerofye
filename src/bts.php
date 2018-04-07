@@ -18,27 +18,18 @@
  * License: https://github.com/Zerofye/Zerofye/blob/master/LICENSE
  */
 
-namespace zerofye\Console;
 
+$directories = array(
+	'zerofye/Zerofye.php',
+	'zerofye/Server.php',
+	'zerofye/Console/Console.php',
+	'zerofye/Console/ConsoleLogger.php',
+	'zerofye/Text/Text.php',
+);
 
-use zerofye\Server;
-
-class Console {
-
-	public $server;
-	public $consoleLogger;
-
-	public function __construct(Server $server){
-		$this->server = $server;
-
-		$this->registerLogger();
-	}
-
-	public function registerLogger() : void {
-		$this->consoleLogger = new ConsoleLogger($this);
-	}
-
-	public function getLogger() : ConsoleLogger {
-		return $this->consoleLogger;
-	}
+// I plan to make it auto load it using glob! (But using this method as of now)
+foreach($directories as $directory){
+	require_once ($directory);
 }
+
+$zero = new \zerofye\Zerofye();
