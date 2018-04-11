@@ -30,11 +30,16 @@ class Console {
 
 	public function __construct(Server $server){
 		$this->server = $server;
-
+        
 		$this->registerLogger();
-	}
 
-	public function registerLogger() : void {
+    }
+    
+    public function getServer(){
+        return $this->server;
+    }
+
+	public function registerLogger() {
 		$this->consoleLogger = new ConsoleLogger($this);
 	}
 

@@ -27,24 +27,30 @@ use zerofye\Text\Text;
 class Server {
 
 	private $console;
+    public $running = false;
 
 	public function __construct(){
-		$this->loadComponents();
+        $this->running = true;        
+        $this->console = new Console($this);
+        
 		$this->start();
 	}
-
-	public function loadComponents() : void {
-
-		$this->console = new Console($this);
-	}
-
+    
 	public function getConsole() : Console {
 		return $this->console;
 	}
 
 	public function start() : void {
-
 		$this->getConsole()->getLogger()->log("Starting up. ..", Text::INFO, Text::COLOR_BLUE);
+        
+        while($this->running == true){
+			
+		}
+        
+        do {
+            echo "Server stopped". PHP_EOL;
+            break;
+        } while ($this->getServer()->running == false);
 
 		/*
 		 *  (TODO) The logics now, leveling, networking, etc.
